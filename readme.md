@@ -1,4 +1,15 @@
-Install
+
+What to experinment
+===
+
+Things to implement:
+- Aggregate 
+- commandBus :: Command -> [Event]
+- processManager :: [Event] -> [Command]
+- projector :: [Event] -> State -> State
+
+
+OLD - Setup Machine Install
 ===
 
 `docker-machine create app`

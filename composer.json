@@ -1,8 +1,26 @@
 {
-    "require": {},
+    "require": {
+        "php": "^7.2",
+        "ramsey/uuid": "^3.7"
+    },
+    "prefer-stable": true,
+    "config": {
+        "bin-dir": "bin",
+        "sort-packages": true
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    },
     "autoload": {
-        "psr-0": {
-            "LoanApplication": "src/LoanApplication/"
+        "psr-4": {
+            "LoanApplication\\": "src/LoanApplication/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Integration\\": "tests/Integration",
+            "Tests\\Unit\\": "tests/Unit",
+            "Tests\\Mocks\\": "tests/Mocks"
         }
     }
 }

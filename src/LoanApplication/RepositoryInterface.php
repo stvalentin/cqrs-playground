@@ -5,6 +5,7 @@ namespace LoanApplication;
 
 interface RepositoryInterface
 {
-    public function getById(Int $id): LoanApplicationAggregate;
+    public function getById(string $id): LoanApplicationAggregate;
     public function save(AggregateInterface $aggregate);
+    public function count(): Int;
 }

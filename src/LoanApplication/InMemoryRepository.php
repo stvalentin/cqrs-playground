@@ -1,27 +1,28 @@
 <?php
 declare(strict_types=1);
 
-use LoanApplication\AggregateInterface;
-use LoanApplication\LoanApplicationAggregate;
-use LoanApplication\RepositoryInterface;
+namespace LoanApplication;
 
 class InMemoryRepository implements RepositoryInterface
 {
-
-
     /**
      * @var array
      */
     private $unitOfWork = [];
 
-    public function getById(Int $id): LoanApplicationAggregate
+    public function getById(string $id): LoanApplicationAggregate
     {
-        return $this->unitOfWork[$id];
+        return new LoanApplicationAggregate($this->unitOfWork[$id]);
     }
 
     public function save(AggregateInterface $aggregate)
     {
         $state = $aggregate->getState();
-        $this->unitOfWork[] = $state;
+        $this->unitOfWork[$state->getId()] = $state;
+    }
+
+    public function count(): int
+    {
+        return count($this->unitOfWork);
     }
 }

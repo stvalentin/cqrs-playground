@@ -4,5 +4,5 @@ namespace LoanApplication;
 
 interface AggregateInterface
 {
-    public function getState(): self;
+    //public function getState(): self;
 }
