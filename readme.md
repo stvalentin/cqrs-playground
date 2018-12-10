@@ -9,6 +9,16 @@ Things to implement:
 - projector :: [Event] -> State -> State
 
 
+Reading List:
+- https://lostechies.com/gabrielschenker/2015/04/16/ddd-revisited/
+- https://lostechies.com/gabrielschenker/2015/04/28/ddd-applied/
+- https://lostechies.com/gabrielschenker/2015/05/25/ddd-the-aggregate/
+- http://codebetter.com/gregyoung/2009/01/16/ddd-the-generic-repository/
+- https://softwareengineering.stackexchange.com/questions/113433/ddd-does-an-aggregate-roots-repository-handle-saving-aggregates
+- https://medium.com/@yauritux/ddd-part-ii-b0735ba584ca
+- http://danielwhittaker.me/2014/10/02/cqrs-step-step-guide-flow-typical-application/
+- http://danielwhittaker.me/2014/11/15/aggregate-root-cqrs-event-sourcing/
+
 OLD - Setup Machine Install
 ===
 
