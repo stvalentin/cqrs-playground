@@ -13,14 +13,31 @@ Reading List:
 - https://lostechies.com/gabrielschenker/2015/04/16/ddd-revisited/
 - https://lostechies.com/gabrielschenker/2015/04/28/ddd-applied/
 - https://lostechies.com/gabrielschenker/2015/05/25/ddd-the-aggregate/
+- https://lostechies.com/gabrielschenker/2015/06/13/event-sourcing-applied-the-application-service/
+- https://lostechies.com/gabrielschenker/2015/06/13/event-sourcing-applied-the-application-service/
+- https://lostechies.com/gabrielschenker/2015/07/13/event-sourcing-applied-the-repository/
+
 - http://codebetter.com/gregyoung/2009/01/16/ddd-the-generic-repository/
 - https://softwareengineering.stackexchange.com/questions/113433/ddd-does-an-aggregate-roots-repository-handle-saving-aggregates
 - https://medium.com/@yauritux/ddd-part-ii-b0735ba584ca
 - http://danielwhittaker.me/2014/10/02/cqrs-step-step-guide-flow-typical-application/
 - http://danielwhittaker.me/2014/11/15/aggregate-root-cqrs-event-sourcing/
+- https://exceptionnotfound.net/implementing-cqrs-in-net-part-2-handling-commands-and-events/
+- https://github.com/prooph/documentation/blob/2ae6edd0a12b861f39ea7cf7a9bffb76c2f7b3a8/event-store-client/blueprints.md
 
-OLD - Setup Machine Install
-===
+
+Starting on the read model
+ - https://lostechies.com/gabrielschenker/2015/05/26/event-sourcing-revisited/
+
+
+####  Running tests
+docker-compose exec php-fpm bin/phpunit
+
+
+
+
+#### OLD - Setup Machine Install
+
 
 `docker-machine create app`
 

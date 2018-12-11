@@ -50,7 +50,7 @@ class LoanApplicationAggregate implements AggregateInterface
     public function submitApplication()
     {
         if ($this->loanApplication->getStatus() != 'draft') {
-            throw new RuntimeException("application is not in draft state");
+            throw new \RuntimeException("application is not in draft state");
         }
 
         $this->loanApplication->setState('Submitted');

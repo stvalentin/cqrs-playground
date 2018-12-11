@@ -30,6 +30,6 @@ class LoanApplicationStateMock
             'email' => self::EMAIL
         ];
 
-        return new LoanApplicationState(self::ID, $values['status'], self::FIRST_NAME, self::LAST_NAME, self::EMAIL);
+        return new LoanApplicationState(Uuid::fromString(self::ID), $values['status'], self::FIRST_NAME, self::LAST_NAME, self::EMAIL);
     }
 }

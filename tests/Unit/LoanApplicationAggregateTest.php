@@ -9,6 +9,7 @@ use LoanApplication\LoanApplicationAggregate;
 use LoanApplication\LoanApplicationState;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Tests\Mocks\LoanApplicationStateMock;
 
 class LoanApplicationAggregateTest extends SpecificationAbstract
 {
@@ -55,6 +56,24 @@ class LoanApplicationAggregateTest extends SpecificationAbstract
         $this->assertSame($this->sut->getState()->getId(), $id->toString());
         $this->assertSame($this->sut->getState()->getFirstName(), $firstName);
         $this->assertSame($this->sut->getState()->getLastName(), $lastName);
+    }
 
+    /**
+     * @test
+     * @throws \RuntimeException
+     */
+    public function when_submitting_an_already_submitted_application()
+    {
+        //given
+        $this->state = LoanApplicationStateMock::create([
+            'status' => 'Submitted'
+        ]);
+
+        //when
+        $this->sut = new LoanApplicationAggregate($this->state);
+
+        //then
+        $this->expectException('\RuntimeException');
+        $this->sut->submitApplication();
     }
 }
