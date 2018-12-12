@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LoanApplication;
 
 use http\Exception\RuntimeException;
+use LoanApplication\Events\LoadApplicationApproved;
 use Ramsey\Uuid\UuidInterface;
 
 class LoanApplicationAggregate implements AggregateInterface
@@ -21,6 +22,8 @@ class LoanApplicationAggregate implements AggregateInterface
     private $loanApplication;
 
     private $brokenRules = [];
+
+    private $version = 0;
 
     private $pendingEvents = [];
 
@@ -44,7 +47,24 @@ class LoanApplicationAggregate implements AggregateInterface
               $email
           )
         );
+    }
 
+    public static function createFromHistory(\Iterator $events)
+    {
+        $self = new self();
+        foreach ($events as $event) {
+            $self->apply($event);
+        }
+    }
+
+    private function apply(EventInterface $event)
+    {
+        $this->version++;
+        if ($event instanceof LoanApplicationSubmitted) {
+            $this->whenLoanApplicationSubmitted($event);
+        } elseif ($event instanceof LoadApplicationApproved) {
+            $this->whenLoanApplicationApproved($event);
+        }
     }
 
     public function submitApplication()
@@ -53,10 +73,12 @@ class LoanApplicationAggregate implements AggregateInterface
             throw new \RuntimeException("application is not in draft state");
         }
 
-        $this->loanApplication->setState('Submitted');
-
         $this->publish( new LoanApplicationSubmitted($this->loanApplication->getId()));
+    }
 
+    private function whenLoanApplicationSubmitted(LoanApplicationSubmitted $event): void
+    {
+        $this->loanApplication->setState('Submitted');
     }
 
 
@@ -83,8 +105,22 @@ class LoanApplicationAggregate implements AggregateInterface
         }
     }
 
+    public function approve(): void
+    {
+        if ($this->loanApplication->getStatus() != 'Submitted') {
+            $this->loanApplication->setState('Can only approve a submitted application');
+        }
+
+        $this->publish(new LoadApplicationApproved($this->loanApplication->getId()));
+    }
+
+    private function whenLoanApplicationApproved(LoadApplicationApproved $event) {
+        $this->loanApplication->setState('Approved');
+    }
+
     public function publish(EventInterface $event) {
         $this->pendingEvents[] = $event;
+        $this->apply($event);
     }
 
     public function getId(): UuidInterface

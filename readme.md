@@ -15,7 +15,9 @@ Reading List:
 - https://lostechies.com/gabrielschenker/2015/05/25/ddd-the-aggregate/
 - https://lostechies.com/gabrielschenker/2015/06/13/event-sourcing-applied-the-application-service/
 - https://lostechies.com/gabrielschenker/2015/06/13/event-sourcing-applied-the-application-service/
+- https://lostechies.com/gabrielschenker/2015/06/06/event-sourcing-applied-the-aggregate/
 - https://lostechies.com/gabrielschenker/2015/07/13/event-sourcing-applied-the-repository/
+
 
 - http://codebetter.com/gregyoung/2009/01/16/ddd-the-generic-repository/
 - https://softwareengineering.stackexchange.com/questions/113433/ddd-does-an-aggregate-roots-repository-handle-saving-aggregates

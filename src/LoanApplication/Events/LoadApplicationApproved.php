@@ -1,13 +1,10 @@
 <?php
-
 declare(strict_types=1);
 
 namespace LoanApplication\Events;
 
-
-class LoanApplicationWidrawed
+class LoadApplicationApproved
 {
-
     /**
      * LoanApplicationWidrawed constructor.
      * @param $id
