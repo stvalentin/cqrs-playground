@@ -36,6 +36,9 @@ Starting on the read model
 docker-compose exec php-fpm bin/phpunit
 
 
+### Running migrations
+docker-compose exec php-fpm bin/phinx migrate
+
 
 
 #### OLD - Setup Machine Install
