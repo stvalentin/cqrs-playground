@@ -4,24 +4,13 @@ namespace Tests\Unit;
 
 use LoanApplication\Command\StartApplicationCommand;
 use LoanApplication\Command\SubmitApplicationCommand;
-use LoanApplication\InMemoryRepository;
 use LoanApplication\LoanApplicationService;
 use PHPUnit\Framework\TestCase;
-use Ramsey\Uuid\Uuid;
 use Tests\Mocks\LoanApplicationStateMock;
 
-class LoanApplicationServiceTest extends TestCase
+abstract class LoanApplicationServiceTest extends TestCase
 {
-
-    /**
-     * @var \InMemoryRepository
-     */
-    private $repository;
-
-    public function setUp()
-    {
-        $this->repository = new InMemoryRepository();
-    }
+    protected $repository;
 
     /**
      * @test
@@ -51,7 +40,7 @@ class LoanApplicationServiceTest extends TestCase
      */
     public function when_submitting_an_existing_loan()
     {
-        //given
+        //givenarray_merge
         $sut = new LoanApplicationService($this->repository);
         $commandStart = new StartApplicationCommand([
             'id' => LoanApplicationStateMock::ID,

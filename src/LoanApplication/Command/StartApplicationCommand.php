@@ -23,8 +23,7 @@ class StartApplicationCommand
 
     /**
      * StartApplicationCommand constructor.
-     * @param StartLoanApplication $request
-     * @param UuidInterface $uuid
+     * @param array $payload
      */
     public function __construct(array $payload)
     {

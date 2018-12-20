@@ -41,6 +41,12 @@ docker-compose exec php-fpm bin/phinx migrate
 
 
 
+### 
+Setting up doctrive without ORM
+ - https://www.doctrine-project.org/projects/doctrine-orm/en/latest/tutorials/getting-started.html
+
+
+
 #### OLD - Setup Machine Install
 
 
