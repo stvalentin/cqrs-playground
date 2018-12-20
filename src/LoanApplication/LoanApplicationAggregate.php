@@ -123,6 +123,10 @@ class LoanApplicationAggregate implements AggregateInterface
         $this->apply($event);
     }
 
+    public function getUncommittedEvents(): array {
+        return $this->pendingEvents;
+    }
+
     public function getId(): UuidInterface
     {
         return $this->id;

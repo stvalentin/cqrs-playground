@@ -4,6 +4,7 @@ namespace LoanApplication;
 
 
 use Doctrine\DBAL\Connection;
+use http\Exception\RuntimeException;
 
 class DbRepository implements RepositoryInterface
 {
@@ -30,7 +31,38 @@ class DbRepository implements RepositoryInterface
 
     public function save(AggregateInterface $aggregate)
     {
-        // TODO: Implement save() method.
+        $events = $aggregate->getUncommittedEvents();
+        if (count($events)) {
+            return ;
+        }
+
+        $originalVersion = $aggregate->getVersion() - count($events) + 1;
+
+        $this->connection->beginTransaction();
+
+        $queryBuilder = $this->connection->createQueryBuilder();
+        $queryBuilder->select('version');
+        $queryBuilder->from('events');
+        $queryBuilder->andWhere('id', $aggregate->getAggregateId());
+        $queryBuilder->orderBy('version', 'desc');
+        $queryBuilder->setMaxResults(1);
+
+        $message = $queryBuilder->execute()->fetch();
+
+        $version = 0;
+        if (!$message) {
+            $version = $message['version'];
+        }
+
+        if ($version  >= $originalVersion ) {
+            throw new RuntimeException('concurrency exception');
+        }
+
+        foreach ($events as $event) {
+            //
+        }
+
+        $this->connection->commit();
     }
 
     public function count(): Int
